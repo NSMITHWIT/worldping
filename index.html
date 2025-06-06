@@ -16,6 +16,23 @@
       color: #f0f0f0;
       font-size: 3rem;
       text-align: center;
+      line-height: 1.6;
+    }
+
+    .char {
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+
+    .glitch {
+      color: #ff2f2f;
+      text-shadow: 0 0 2px #ff2f2f;
+      animation: flicker 0.1s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%   { opacity: 0.3; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1.05); }
     }
   </style>
 </head>
@@ -25,16 +42,35 @@
     Your browser does not support the audio element.
   </audio>
 
-  Ctrl+Shift+I<br>
-  Ctrl+Shift+P<br>
-  Disable ...<br>
-  F5<br>
-  Part your hair behind <br>
-  Dare eat a peach
+  <div id="ritual"></div>
 
   <script>
+    const lines = [
+      "Ctrl+Shift+I",
+      "Ctrl+Shift+P",
+      "Disable ...",
+      "F5",
+      "Part your hair behind",
+      "Dare eat a peach"
+    ];
+
+    const ritual = document.getElementById('ritual');
+
+    // Create spans for every character
+    lines.forEach(line => {
+      const lineEl = document.createElement('div');
+      [...line].forEach(char => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char;
+        lineEl.appendChild(span);
+      });
+      ritual.appendChild(lineEl);
+    });
+
+    // Audio fade-in ritual
     const audio = document.getElementById('bg-music');
-    audio.volume = 0; // start muted
+    audio.volume = 0;
 
     window.addEventListener('DOMContentLoaded', () => {
       audio.play().then(() => {
@@ -47,11 +83,30 @@
           } else {
             clearInterval(fade);
           }
-        }, 200); // ~10s fade-in
+        }, 200);
       }).catch(err => {
         console.warn("Autoplay failed anyway:", err);
       });
     });
+
+    // Glitch engine
+    function glitchCycle() {
+      const chars = document.querySelectorAll('.char');
+      const glitchCount = Math.floor(Math.random() * 4) + 1;
+      for (let i = 0; i < glitchCount; i++) {
+        const span = chars[Math.floor(Math.random() * chars.length)];
+        const original = span.textContent;
+        span.classList.add('glitch');
+        const randomGlitch = ['█', '░', '▒', '▓', '@', '#', ' '];
+        span.textContent = randomGlitch[Math.floor(Math.random() * randomGlitch.length)];
+        setTimeout(() => {
+          span.classList.remove('glitch');
+          span.textContent = original;
+        }, Math.random() * 300 + 100);
+      }
+    }
+
+    setInterval(glitchCycle, 250);
   </script>
 </body>
 </html>
