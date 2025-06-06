@@ -8,6 +8,7 @@
     body {
       font-family: system-ui, sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -17,6 +18,8 @@
       font-size: 3rem;
       text-align: center;
       line-height: 1.6;
+      overflow: hidden;
+      transition: transform 0.1s ease-in-out;
     }
 
     .char {
@@ -34,6 +37,38 @@
       0%   { opacity: 0.3; transform: scale(0.95); }
       100% { opacity: 1; transform: scale(1.05); }
     }
+
+    #paywall-curse {
+      font-size: 2.5rem;
+      color: #ff2f2f;
+      animation: curse-glow 2s infinite alternate;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 4px #ff2f2f;
+    }
+
+    @keyframes curse-glow {
+      from {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1.07) rotateZ(0.5deg);
+      }
+    }
+
+    .shake {
+      animation: shake-screen 0.3s linear;
+    }
+
+    @keyframes shake-screen {
+      0%   { transform: translate(0px, 0px); }
+      20%  { transform: translate(-5px, 3px); }
+      40%  { transform: translate(4px, -4px); }
+      60%  { transform: translate(-3px, 5px); }
+      80%  { transform: translate(5px, -2px); }
+      100% { transform: translate(0px, 0px); }
+    }
   </style>
 </head>
 <body>
@@ -42,13 +77,14 @@
     Your browser does not support the audio element.
   </audio>
 
+  <div id="paywall-curse">PAYWALL CURSE</div>
   <div id="ritual"></div>
 
   <script>
     const lines = [
       "Ctrl+Shift+I",
       "Ctrl+Shift+P",
-      "Disable ...",
+      "Disable Javascript",
       "F5",
       "Part your hair behind",
       "Dare eat a peach"
@@ -56,7 +92,6 @@
 
     const ritual = document.getElementById('ritual');
 
-    // Create spans for every character
     lines.forEach(line => {
       const lineEl = document.createElement('div');
       [...line].forEach(char => {
@@ -68,7 +103,7 @@
       ritual.appendChild(lineEl);
     });
 
-    // Audio fade-in ritual
+    // Audio fade-in
     const audio = document.getElementById('bg-music');
     audio.volume = 0;
 
@@ -107,6 +142,19 @@
     }
 
     setInterval(glitchCycle, 250);
+
+    // Screen shake engine
+    function shakeScreen() {
+      document.body.classList.add('shake');
+      setTimeout(() => {
+        document.body.classList.remove('shake');
+      }, 300);
+    }
+
+    // Trigger shake at random intervals
+    setInterval(() => {
+      if (Math.random() < 0.15) shakeScreen();
+    }, 1000);
   </script>
 </body>
 </html>
