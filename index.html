@@ -20,6 +20,7 @@
       line-height: 1.6;
       overflow: hidden;
       transition: transform 0.1s ease-in-out;
+      position: relative;
     }
 
     .char {
@@ -41,20 +42,8 @@
     #paywall-curse {
       font-size: 2.5rem;
       color: #ff2f2f;
-      animation: curse-glow 2s infinite alternate;
-      margin-bottom: 2rem;
       text-shadow: 0 0 4px #ff2f2f;
-    }
-
-    @keyframes curse-glow {
-      from {
-        opacity: 0.6;
-        transform: scale(1);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1.07) rotateZ(0.5deg);
-      }
+      margin-bottom: 2rem;
     }
 
     .shake {
@@ -69,6 +58,24 @@
       80%  { transform: translate(5px, -2px); }
       100% { transform: translate(0px, 0px); }
     }
+
+    #tear-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('tear.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999;
+      transition: opacity 0.05s ease;
+    }
+
+    .flash {
+      opacity: 0.8 !important;
+    }
   </style>
 </head>
 <body>
@@ -77,6 +84,7 @@
     Your browser does not support the audio element.
   </audio>
 
+  <div id="tear-overlay"></div>
   <div id="paywall-curse">PAYWALL CURSE</div>
   <div id="ritual"></div>
 
@@ -103,7 +111,6 @@
       ritual.appendChild(lineEl);
     });
 
-    // Audio fade-in
     const audio = document.getElementById('bg-music');
     audio.volume = 0;
 
@@ -124,7 +131,6 @@
       });
     });
 
-    // Glitch engine
     function glitchCycle() {
       const chars = document.querySelectorAll('.char');
       const glitchCount = Math.floor(Math.random() * 4) + 1;
@@ -143,15 +149,17 @@
 
     setInterval(glitchCycle, 250);
 
-    // Screen shake engine
+    const tear = document.getElementById('tear-overlay');
+
     function shakeScreen() {
       document.body.classList.add('shake');
+      tear.classList.add('flash');
       setTimeout(() => {
         document.body.classList.remove('shake');
-      }, 300);
+        tear.classList.remove('flash');
+      }, 100); // Flash duration
     }
 
-    // Trigger shake at random intervals
     setInterval(() => {
       if (Math.random() < 0.15) shakeScreen();
     }, 1000);
