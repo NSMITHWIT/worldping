@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-  <audio id="bg-music" autoplay>
+  <audio id="bg-music" autoplay muted>
     <source src="music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -33,11 +33,23 @@
   Dare eat a peach
 
   <script>
-    // Ensure autoplay works if browser requires user interaction
+    const audio = document.getElementById('bg-music');
+    audio.volume = 0; // start muted
+
     window.addEventListener('DOMContentLoaded', () => {
-      const audio = document.getElementById('bg-music');
-      audio.play().catch(err => {
-        console.warn('Autoplay blocked:', err);
+      audio.play().then(() => {
+        audio.muted = false;
+        let vol = 0;
+        const fade = setInterval(() => {
+          if (vol < 1) {
+            vol = Math.min(vol + 0.02, 1);
+            audio.volume = vol;
+          } else {
+            clearInterval(fade);
+          }
+        }, 200); // ~10s fade-in
+      }).catch(err => {
+        console.warn("Autoplay failed anyway:", err);
       });
     });
   </script>
