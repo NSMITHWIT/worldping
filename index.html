@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WorldPing</title>
   <style>
+    @keyframes pulse {
+  0% { box-shadow: 0 0 5px #ff2f2f; }
+  50% { box-shadow: 0 0 20px #ff2f2f; }
+  100% { box-shadow: 0 0 5px #ff2f2f; }
+}
     body {
       font-family: system-ui, sans-serif;
       display: flex;
@@ -87,6 +92,21 @@
   <div id="tear-overlay"></div>
   <div id="paywall-curse">PAYWALL CURSE</div>
   <div id="ritual"></div>
+  <button id="open-video" style="
+  font-size: 1.5rem;
+  padding: 0.5em 1.2em;
+  background: transparent;
+  color: #ff2f2f;
+  border: 2px solid #ff2f2f;
+  cursor: pointer;
+  margin-top: 2rem;
+  text-shadow: 0 0 5px #ff2f2f;
+  animation: pulse 1.5s infinite;
+  font-weight: bold;
+  letter-spacing: 1px;
+">
+  🔥 Witness the Fire 🔥
+</button>
 
   <script>
     const lines = [
@@ -163,6 +183,11 @@
     setInterval(() => {
       if (Math.random() < 0.2) shakeScreen();
     }, 400);
+
+    document.getElementById('open-video').addEventListener('click', () => {
+  window.open('video.html', '_blank');
+});
+
   </script>
 </body>
 </html>
