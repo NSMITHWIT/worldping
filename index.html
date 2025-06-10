@@ -52,6 +52,7 @@
       margin-bottom: 2rem;
     }
 
+
     #dice-roll {
       font-size: 2.5rem;
       color: #ff2f2f;
@@ -59,6 +60,15 @@
       margin-top: 1rem;
       animation: pulse 2s infinite;
     }
+    #utc-time {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #ff2f2f;
+  text-shadow: 0 0 15px #ff2f2f;
+  animation: pulse 3s infinite;
+}
+
 
     .shake {
       animation: shake-screen 0.3s linear;
@@ -93,6 +103,23 @@
   </style>
 </head>
 <body>
+
+  <button id="summon-sparks" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: transparent;
+  border: 2px solid #ff2f2f;
+  color: #ff2f2f;
+  font-size: 1.2rem;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  text-shadow: 0 0 5px #ff2f2f;
+  animation: pulse 1.5s infinite;
+  font-weight: bold;
+  z-index: 1000;
+">⚡ Summon Sparks ⚡</button>
+
   <audio id="bg-music" autoplay muted>
     <source src="music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
@@ -101,6 +128,7 @@
   <div id="tear-overlay"></div>
   <div id="paywall-curse">PAYWALL CURSE</div>
   <div id="dice-roll">🎲 Rolling...</div>
+  <div id="utc-time">⏳ LOADING UTC...</div>
   <div id="ritual"></div>
 
   <button id="open-video" style="
@@ -119,6 +147,39 @@
   </button>
 
   <script>
+    function summonSpark() {
+  const spark = document.createElement('div');
+  spark.textContent = '✴';
+  Object.assign(spark.style, {
+    position: 'fixed',
+    left: `${Math.random() * 100}vw`,
+    top: '-5vh',
+    fontSize: `${Math.random() * 1.5 + 1}rem`,
+    color: '#ff2f2f',
+    textShadow: '0 0 10px #ff2f2f',
+    pointerEvents: 'none',
+    zIndex: 1000,
+    animation: 'fall 3s linear forwards'
+  });
+  document.body.appendChild(spark);
+  setTimeout(() => spark.remove(), 3000);
+}
+
+document.getElementById('summon-sparks').addEventListener('click', () => {
+  for (let i = 0; i < 25; i++) {
+    setTimeout(summonSpark, i * 100);
+  }
+});
+
+// Falling keyframes
+const fallKeyframes = document.createElement('style');
+fallKeyframes.textContent = `
+@keyframes fall {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}`;
+document.head.appendChild(fallKeyframes);
+
     // Ritual Text Display
     const lines = [
       "Ctrl+Shift+I",
@@ -215,6 +276,17 @@
     setInterval(() => {
       if (Math.random() < 0.2) updateDice();
     }, 2000);
+
+    // 🕓 LIVE UTC TIME
+function updateUTC() {
+  const now = new Date();
+  const utc = now.toUTCString().split(' ')[4]; // "HH:MM:SS"
+  document.getElementById('utc-time').textContent = `UTC ${utc}`;
+}
+
+updateUTC();
+setInterval(updateUTC, 1000);
+
   </script>
 </body>
 </html>
