@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WorldPing</title>
   <style>
     @keyframes pulse {
-  0% { box-shadow: 0 0 5px #ff2f2f; }
-  50% { box-shadow: 0 0 20px #ff2f2f; }
-  100% { box-shadow: 0 0 5px #ff2f2f; }
-}
+      0% { box-shadow: 0 0 5px #ff2f2f; }
+      50% { box-shadow: 0 0 20px #ff2f2f; }
+      100% { box-shadow: 0 0 5px #ff2f2f; }
+    }
+
     body {
       font-family: system-ui, sans-serif;
       display: flex;
@@ -40,7 +41,7 @@
     }
 
     @keyframes flicker {
-      0%   { opacity: 0.3; transform: scale(0.95); }
+      0% { opacity: 0.3; transform: scale(0.95); }
       100% { opacity: 1; transform: scale(1.05); }
     }
 
@@ -51,16 +52,24 @@
       margin-bottom: 2rem;
     }
 
+    #dice-roll {
+      font-size: 2.5rem;
+      color: #ff2f2f;
+      text-shadow: 0 0 10px #ff2f2f;
+      margin-top: 1rem;
+      animation: pulse 2s infinite;
+    }
+
     .shake {
       animation: shake-screen 0.3s linear;
     }
 
     @keyframes shake-screen {
-      0%   { transform: translate(0px, 0px); }
-      20%  { transform: translate(-5px, 3px); }
-      40%  { transform: translate(4px, -4px); }
-      60%  { transform: translate(-3px, 5px); }
-      80%  { transform: translate(5px, -2px); }
+      0% { transform: translate(0px, 0px); }
+      20% { transform: translate(-5px, 3px); }
+      40% { transform: translate(4px, -4px); }
+      60% { transform: translate(-3px, 5px); }
+      80% { transform: translate(5px, -2px); }
       100% { transform: translate(0px, 0px); }
     }
 
@@ -91,24 +100,26 @@
 
   <div id="tear-overlay"></div>
   <div id="paywall-curse">PAYWALL CURSE</div>
+  <div id="dice-roll">🎲 Rolling...</div>
   <div id="ritual"></div>
+
   <button id="open-video" style="
-  font-size: 1.5rem;
-  padding: 0.5em 1.2em;
-  background: transparent;
-  color: #ff2f2f;
-  border: 2px solid #ff2f2f;
-  cursor: pointer;
-  margin-top: 2rem;
-  text-shadow: 0 0 5px #ff2f2f;
-  animation: pulse 1.5s infinite;
-  font-weight: bold;
-  letter-spacing: 1px;
-">
-  🔥 Witness the Fire 🔥
-</button>
+    font-size: 1.5rem;
+    padding: 0.5em 1.2em;
+    background: transparent;
+    color: #ff2f2f;
+    border: 2px solid #ff2f2f;
+    cursor: pointer;
+    margin-top: 2rem;
+    text-shadow: 0 0 5px #ff2f2f;
+    animation: pulse 1.5s infinite;
+    font-weight: bold;
+    letter-spacing: 1px;">
+    🔥 Witness the Fire 🔥
+  </button>
 
   <script>
+    // Ritual Text Display
     const lines = [
       "Ctrl+Shift+I",
       "Ctrl+Shift+P",
@@ -119,7 +130,6 @@
     ];
 
     const ritual = document.getElementById('ritual');
-
     lines.forEach(line => {
       const lineEl = document.createElement('div');
       [...line].forEach(char => {
@@ -131,9 +141,9 @@
       ritual.appendChild(lineEl);
     });
 
+    // Background Music
     const audio = document.getElementById('bg-music');
     audio.volume = 0;
-
     window.addEventListener('DOMContentLoaded', () => {
       audio.play().then(() => {
         audio.muted = false;
@@ -147,10 +157,11 @@
           }
         }, 200);
       }).catch(err => {
-        console.warn("Autoplay failed anyway:", err);
+        console.warn("Autoplay failed:", err);
       });
     });
 
+    // Glitch Effect
     function glitchCycle() {
       const chars = document.querySelectorAll('.char');
       const glitchCount = Math.floor(Math.random() * 4) + 1;
@@ -169,25 +180,41 @@
 
     setInterval(glitchCycle, 250);
 
+    // Screen Shake
     const tear = document.getElementById('tear-overlay');
-
     function shakeScreen() {
       document.body.classList.add('shake');
       tear.classList.add('flash');
       setTimeout(() => {
         document.body.classList.remove('shake');
         tear.classList.remove('flash');
-      }, 100); // Flash duration
+      }, 100);
     }
 
     setInterval(() => {
       if (Math.random() < 0.2) shakeScreen();
     }, 400);
 
+    // Open Fire Button
     document.getElementById('open-video').addEventListener('click', () => {
-  window.open('video.html', '_blank');
-});
+      window.open('video.html', '_blank');
+    });
 
+    // 🎲 DICE LOGIC
+    function rollDie(min = 12, max = 20) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const diceDiv = document.getElementById('dice-roll');
+    function updateDice() {
+      const result = rollDie();
+      diceDiv.textContent = `🎲 ${result}`;
+    }
+
+    updateDice(); // Initial roll
+    setInterval(() => {
+      if (Math.random() < 0.2) updateDice();
+    }, 2000);
   </script>
 </body>
 </html>
