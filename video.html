@@ -3,28 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Fire Ritual</title>
+  <title>Captain Claw's — The Kitchen Cam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px #e8391d, 0 0 20px #e8391d; }
+      50%       { text-shadow: 0 0 5px #e8391d, 0 0 10px #e8391d; }
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      background-color: #000;
+      background-color: #0d0a06;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px, transparent 36px,
+          rgba(101,60,20,0.12) 36px, rgba(101,60,20,0.12) 38px
+        );
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 2rem;
+      gap: 1.25rem;
+    }
+
+    .marquee {
+      font-family: 'Lobster', cursive;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: #e8391d;
+      animation: glow 2s ease-in-out infinite;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .sub {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.75rem;
+      color: #4ecdc4;
+      text-shadow: 0 0 6px #4ecdc4;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(78,205,196,0.4);
+      border-bottom: 1px solid rgba(78,205,196,0.4);
+      padding: 0.3em 1.5em;
+      text-align: center;
     }
 
     video {
       width: 90%;
       max-width: 960px;
-      box-shadow: 0 0 20px #ff2f2f;
+      border: 3px solid #e8391d;
+      box-shadow: 0 0 25px rgba(232,57,29,0.5), 0 0 60px rgba(232,57,29,0.2);
     }
+
+    .back {
+      font-family: 'Special Elite', cursive;
+      font-size: 0.8rem;
+      color: #4ecdc4;
+      text-decoration: none;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .back:hover { opacity: 1; }
   </style>
 </head>
 <body>
+  <div class="marquee">🔥 NOW SHOWING AT THE KITCHEN 🔥</div>
+  <div class="sub">⚓ Captain Claw's World Famous Lobster Palace ⚓</div>
+
   <video controls autoplay>
     <source src="thefire.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
+
+  <a class="back" href="/">← back to the shack</a>
 </body>
 </html>
