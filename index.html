@@ -52,7 +52,6 @@
       margin-bottom: 2rem;
     }
 
-
     #dice-roll {
       font-size: 2.5rem;
       color: #ff2f2f;
@@ -60,26 +59,26 @@
       margin-top: 1rem;
       animation: pulse 2s infinite;
     }
-    #utc-time {
-  font-size: 4rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: #ff2f2f;
-  text-shadow: 0 0 15px #ff2f2f;
-  animation: pulse 3s infinite;
-}
 
+    #utc-time {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #ff2f2f;
+      text-shadow: 0 0 15px #ff2f2f;
+      animation: pulse 3s infinite;
+    }
 
     .shake {
       animation: shake-screen 0.3s linear;
     }
 
     @keyframes shake-screen {
-      0% { transform: translate(0px, 0px); }
-      20% { transform: translate(-5px, 3px); }
-      40% { transform: translate(4px, -4px); }
-      60% { transform: translate(-3px, 5px); }
-      80% { transform: translate(5px, -2px); }
+      0%   { transform: translate(0px, 0px); }
+      20%  { transform: translate(-5px, 3px); }
+      40%  { transform: translate(4px, -4px); }
+      60%  { transform: translate(-3px, 5px); }
+      80%  { transform: translate(5px, -2px); }
       100% { transform: translate(0px, 0px); }
     }
 
@@ -97,32 +96,56 @@
       transition: opacity 0.05s ease;
     }
 
-    .flash {
-      opacity: 0.8 !important;
+    .flash { opacity: 0.8 !important; }
+
+    /* ── Trading dashboard button ── */
+    #open-dashboard {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+      font-size: 0.9rem;
+      font-family: monospace;
+      padding: 0.4em 1em;
+      cursor: pointer;
+      text-shadow: 0 0 6px #00ffcc;
+      box-shadow: 0 0 8px #00ffcc44;
+      letter-spacing: 0.08em;
+      z-index: 1000;
+      transition: box-shadow 0.2s;
+    }
+    #open-dashboard:hover {
+      box-shadow: 0 0 18px #00ffcc;
     }
   </style>
 </head>
 <body>
 
+  <!-- Trading dashboard link — top right, teal so it doesn't clash with the red -->
+  <button id="open-dashboard" onclick="window.location.href='/status'">
+    📈 POSITIONS
+  </button>
+
   <button id="summon-sparks" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: transparent;
-  border: 2px solid #ff2f2f;
-  color: #ff2f2f;
-  font-size: 1.2rem;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  text-shadow: 0 0 5px #ff2f2f;
-  animation: pulse 1.5s infinite;
-  font-weight: bold;
-  z-index: 1000;
-">⚡ Summon Sparks ⚡</button>
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: transparent;
+    border: 2px solid #ff2f2f;
+    color: #ff2f2f;
+    font-size: 1.2rem;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    text-shadow: 0 0 5px #ff2f2f;
+    animation: pulse 1.5s infinite;
+    font-weight: bold;
+    z-index: 1000;
+  ">⚡ Summon Sparks ⚡</button>
 
   <audio id="bg-music" autoplay muted>
     <source src="music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <div id="tear-overlay"></div>
@@ -147,47 +170,40 @@
   </button>
 
   <script>
+    // ── Spark summoner ────────────────────────────────────────────────────────
     function summonSpark() {
-  const spark = document.createElement('div');
-  spark.textContent = '✴';
-  Object.assign(spark.style, {
-    position: 'fixed',
-    left: `${Math.random() * 100}vw`,
-    top: '-5vh',
-    fontSize: `${Math.random() * 1.5 + 1}rem`,
-    color: '#ff2f2f',
-    textShadow: '0 0 10px #ff2f2f',
-    pointerEvents: 'none',
-    zIndex: 1000,
-    animation: 'fall 3s linear forwards'
-  });
-  document.body.appendChild(spark);
-  setTimeout(() => spark.remove(), 3000);
-}
+      const spark = document.createElement('div');
+      spark.textContent = '✴';
+      Object.assign(spark.style, {
+        position: 'fixed',
+        left: `${Math.random() * 100}vw`,
+        top: '-5vh',
+        fontSize: `${Math.random() * 1.5 + 1}rem`,
+        color: '#ff2f2f',
+        textShadow: '0 0 10px #ff2f2f',
+        pointerEvents: 'none',
+        zIndex: 1000,
+        animation: 'fall 3s linear forwards'
+      });
+      document.body.appendChild(spark);
+      setTimeout(() => spark.remove(), 3000);
+    }
 
-document.getElementById('summon-sparks').addEventListener('click', () => {
-  for (let i = 0; i < 25; i++) {
-    setTimeout(summonSpark, i * 100);
-  }
-});
+    document.getElementById('summon-sparks').addEventListener('click', () => {
+      for (let i = 0; i < 25; i++) setTimeout(summonSpark, i * 100);
+    });
 
-// Falling keyframes
-const fallKeyframes = document.createElement('style');
-fallKeyframes.textContent = `
-@keyframes fall {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(110vh); opacity: 0; }
-}`;
-document.head.appendChild(fallKeyframes);
+    const fallKeyframes = document.createElement('style');
+    fallKeyframes.textContent = `
+      @keyframes fall {
+        0%   { transform: translateY(0);    opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+      }`;
+    document.head.appendChild(fallKeyframes);
 
-    // Ritual Text Display
+    // ── Ritual text ───────────────────────────────────────────────────────────
     const lines = [
-      "Ctrl+Shift+I",
-      "Ctrl+Shift+P",
-      "Disable Javascript",
-      "F5",
-      "Part your hair behind",
-      "Dare eat a peach"
+
     ];
 
     const ritual = document.getElementById('ritual');
@@ -202,7 +218,7 @@ document.head.appendChild(fallKeyframes);
       ritual.appendChild(lineEl);
     });
 
-    // Background Music
+    // ── Background music ──────────────────────────────────────────────────────
     const audio = document.getElementById('bg-music');
     audio.volume = 0;
     window.addEventListener('DOMContentLoaded', () => {
@@ -210,38 +226,30 @@ document.head.appendChild(fallKeyframes);
         audio.muted = false;
         let vol = 0;
         const fade = setInterval(() => {
-          if (vol < 1) {
-            vol = Math.min(vol + 0.02, 1);
-            audio.volume = vol;
-          } else {
-            clearInterval(fade);
-          }
+          if (vol < 1) { vol = Math.min(vol + 0.02, 1); audio.volume = vol; }
+          else clearInterval(fade);
         }, 200);
-      }).catch(err => {
-        console.warn("Autoplay failed:", err);
-      });
+      }).catch(err => console.warn("Autoplay failed:", err));
     });
 
-    // Glitch Effect
+    // ── Glitch effect ─────────────────────────────────────────────────────────
     function glitchCycle() {
       const chars = document.querySelectorAll('.char');
-      const glitchCount = Math.floor(Math.random() * 4) + 1;
-      for (let i = 0; i < glitchCount; i++) {
+      const count = Math.floor(Math.random() * 4) + 1;
+      for (let i = 0; i < count; i++) {
         const span = chars[Math.floor(Math.random() * chars.length)];
         const original = span.textContent;
         span.classList.add('glitch');
-        const randomGlitch = ['█', '░', '▒', '▓', '@', '#', ' '];
-        span.textContent = randomGlitch[Math.floor(Math.random() * randomGlitch.length)];
+        span.textContent = ['█','░','▒','▓','@','#',' '][Math.floor(Math.random()*7)];
         setTimeout(() => {
           span.classList.remove('glitch');
           span.textContent = original;
         }, Math.random() * 300 + 100);
       }
     }
-
     setInterval(glitchCycle, 250);
 
-    // Screen Shake
+    // ── Screen shake ──────────────────────────────────────────────────────────
     const tear = document.getElementById('tear-overlay');
     function shakeScreen() {
       document.body.classList.add('shake');
@@ -251,42 +259,28 @@ document.head.appendChild(fallKeyframes);
         tear.classList.remove('flash');
       }, 100);
     }
+    setInterval(() => { if (Math.random() < 0.2) shakeScreen(); }, 400);
 
-    setInterval(() => {
-      if (Math.random() < 0.2) shakeScreen();
-    }, 400);
-
-    // Open Fire Button
+    // ── Fire button ───────────────────────────────────────────────────────────
     document.getElementById('open-video').addEventListener('click', () => {
       window.open('video.html', '_blank');
     });
 
-    // 🎲 DICE LOGIC
-    function rollDie(min = 12, max = 20) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
+    // ── Dice ──────────────────────────────────────────────────────────────────
     const diceDiv = document.getElementById('dice-roll');
     function updateDice() {
-      const result = rollDie();
-      diceDiv.textContent = `🎲 ${result}`;
+      diceDiv.textContent = `🎲 ${Math.floor(Math.random() * 9) + 12}`;
     }
+    updateDice();
+    setInterval(() => { if (Math.random() < 0.2) updateDice(); }, 2000);
 
-    updateDice(); // Initial roll
-    setInterval(() => {
-      if (Math.random() < 0.2) updateDice();
-    }, 2000);
-
-    // 🕓 LIVE UTC TIME
-function updateUTC() {
-  const now = new Date();
-  const utc = now.toUTCString().split(' ')[4]; // "HH:MM:SS"
-  document.getElementById('utc-time').textContent = `UTC ${utc}`;
-}
-
-updateUTC();
-setInterval(updateUTC, 1000);
-
+    // ── UTC clock ─────────────────────────────────────────────────────────────
+    function updateUTC() {
+      document.getElementById('utc-time').textContent =
+        `UTC ${new Date().toUTCString().split(' ')[4]}`;
+    }
+    updateUTC();
+    setInterval(updateUTC, 1000);
   </script>
 </body>
 </html>
