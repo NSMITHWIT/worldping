@@ -3,240 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alpaca Bot — Status</title>
+    <title>Captain Alpaca's Trading Shack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Alfa+Slab+One&family=Courier+Prime:wght@400;700&family=Permanent+Marker&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-        --bg:        #080c10;
-        --surface:   #0e1318;
-        --border:    #1e2830;
-        --border2:   #2a3540;
-        --text:      #cdd9e5;
-        --muted:     #5a7080;
-        --accent:    #00d4aa;
-        --blue:      #4a9eff;
-        --green:     #2dcc70;
-        --red:       #e05555;
-        --yellow:    #f0c040;
+        --ocean:     #0a3d5e;
+        --deep:      #062030;
+        --seafoam:   #4ecdc4;
+        --coral:     #ff6b4a;
+        --lobster:   #c0392b;
+        --butter:    #f9e04b;
+        --sand:      #f5e6c8;
+        --kelp:      #2d6a4f;
+        --barnacle:  #8b7355;
+        --foam:      #e8f4f8;
+        --plank:     #6b4423;
+        --neon-red:  #ff2244;
+        --neon-teal: #00ffdd;
+        --white:     #fffef5;
     }
 
     body {
-        background: var(--bg);
-        color: var(--text);
-        font-family: 'IBM Plex Sans', sans-serif;
-        font-size: 13px;
-        line-height: 1.6;
-        padding: 2rem;
+        background-color: var(--deep);
+        background-image:
+            repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(10,61,94,0.3) 40px, rgba(10,61,94,0.3) 41px),
+            repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(10,61,94,0.3) 40px, rgba(10,61,94,0.3) 41px);
+        color: var(--sand);
+        font-family: 'Courier Prime', monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        min-height: 100vh;
     }
 
-    .container { max-width: 960px; margin: 0 auto; }
-
-    /* Header */
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        padding-bottom: 1.5rem;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid var(--border);
-    }
-    .header-left h1 {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--accent);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-    }
-    .header-left .subtitle {
-        color: var(--muted);
-        font-size: 0.8rem;
-        font-family: 'IBM Plex Mono', monospace;
-        margin-top: 0.2rem;
-    }
-    .header-right {
-        text-align: right;
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.75rem;
-        color: var(--muted);
-    }
-    .env-badge {
-        display: inline-block;
-        padding: 0.2em 0.6em;
-        background: #1a2a20;
-        color: var(--green);
-        border: 1px solid #2a4a30;
-        border-radius: 3px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        margin-bottom: 0.4rem;
-    }
-
-    /* Live pill */
-    .live-pill {
-        display: inline-block;
-        padding: 0.15em 0.5em;
-        background: #001a12;
-        color: var(--accent);
-        border: 1px solid #004433;
-        border-radius: 3px;
-        font-size: 0.65rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        vertical-align: middle;
-        margin-left: 0.5rem;
+    /* ── HEADER ─────────────────────────────────────── */
+    .shack-header {
+        background: var(--lobster);
+        background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,0.08) 10px, rgba(0,0,0,0.08) 20px);
+        border-bottom: 6px solid var(--butter);
         position: relative;
-        top: -1px;
+        overflow: hidden;
     }
+    .shack-header::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 8px;
+        background: repeating-linear-gradient(90deg, var(--butter) 0px, var(--butter) 20px, var(--lobster) 20px, var(--lobster) 40px);
+    }
+    .header-inner {
+        max-width: 1100px; margin: 0 auto;
+        padding: 2rem 2rem 1.5rem;
+        display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;
+    }
+    .shack-name {
+        font-family: 'Alfa Slab One', serif;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        color: var(--butter);
+        text-shadow: 3px 3px 0 #7a1a0f, 6px 6px 0 rgba(0,0,0,0.4);
+        line-height: 1;
+    }
+    .shack-name .sub {
+        font-size: clamp(1.2rem, 3vw, 2rem); display: block; margin-top: 0.2rem;
+    }
+    .shack-tagline {
+        font-family: 'Permanent Marker', cursive; font-size: 0.95rem;
+        color: var(--sand); margin-top: 0.4rem; opacity: 0.9;
+    }
+    .header-meta { text-align: right; }
+    .env-badge {
+        display: inline-block; background: var(--butter); color: var(--lobster);
+        font-family: 'Alfa Slab One', serif; font-size: 0.7rem; letter-spacing: 0.15em;
+        padding: 0.25em 0.8em; border: 3px solid var(--plank); box-shadow: 3px 3px 0 var(--plank);
+        margin-bottom: 0.5rem; text-transform: uppercase;
+    }
+    .header-right { font-size: 0.75rem; color: rgba(245,230,200,0.6); font-family: 'Courier Prime', monospace; }
 
-    /* Sections */
-    section {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 1.25rem 1.5rem;
-        margin-bottom: 1.25rem;
+    /* ── TICKER TAPE ─────────────────────────────────── */
+    .ticker-wrap {
+        background: var(--ocean); border-top: 3px solid var(--seafoam);
+        border-bottom: 3px solid var(--seafoam); overflow: hidden; padding: 6px 0;
     }
-    section h2 {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.7rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-        margin-bottom: 1.1rem;
-        padding-bottom: 0.6rem;
-        border-bottom: 1px solid var(--border);
+    .ticker-inner { display: flex; animation: ticker 28s linear infinite; white-space: nowrap; }
+    .ticker-inner span {
+        font-family: 'Boogaloo', cursive; font-size: 1rem;
+        color: var(--butter); padding: 0 2.5rem; letter-spacing: 0.05em;
     }
+    .ticker-inner span.green { color: var(--neon-teal); }
+    .ticker-inner span.red   { color: var(--neon-red);  }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* Account snapshot grid */
-    .snap-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
+    /* ── LAYOUT ──────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+    /* ── BOARDS ──────────────────────────────────────── */
+    .board {
+        background: var(--ocean); border: 3px solid var(--barnacle); border-radius: 4px;
+        margin-bottom: 2rem; box-shadow: 4px 4px 0 var(--plank), 8px 8px 0 rgba(0,0,0,0.3);
+        position: relative; overflow: hidden;
     }
+    .board::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: repeating-linear-gradient(90deg, var(--seafoam) 0, var(--seafoam) 8px, transparent 8px, transparent 16px);
+    }
+    .board-title {
+        background: var(--plank); padding: 0.75rem 1.5rem;
+        font-family: 'Alfa Slab One', serif; font-size: 1rem;
+        letter-spacing: 0.12em; text-transform: uppercase; color: var(--butter);
+        display: flex; align-items: center; gap: 0.75rem;
+        border-bottom: 3px solid var(--barnacle);
+    }
+    .board-title .icon { font-size: 1.3rem; }
+    .board-body { padding: 1.25rem 1.5rem; }
+
+    /* ── LIVE TAG ─────────────────────────────────────── */
+    .live-pill {
+        margin-left: auto; background: var(--neon-teal); color: var(--deep);
+        font-family: 'Boogaloo', cursive; font-size: 0.7rem; letter-spacing: 0.2em;
+        padding: 0.15em 0.6em; border-radius: 2px; animation: blink 1.5s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* ── ACCOUNT SNAP ────────────────────────────────── */
+    .snap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
     .snap-card {
-        background: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: 5px;
-        padding: 1rem 1.1rem;
+        background: var(--deep); border: 2px solid var(--barnacle); border-radius: 3px; padding: 1rem 1.2rem;
     }
-    .snap-card.highlight-positive { border-color: #1a4a2a; background: #050e08; }
-    .snap-card.highlight-negative { border-color: #4a1a1a; background: #0e0505; }
+    .snap-card.highlight-positive { border-color: var(--seafoam); background: #062e28; }
+    .snap-card.highlight-negative { border-color: var(--coral); background: #2e0e08; }
     .snap-label {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--muted);
-        margin-bottom: 0.4rem;
+        font-family: 'Boogaloo', cursive; font-size: 0.72rem; letter-spacing: 0.15em;
+        text-transform: uppercase; color: var(--barnacle); margin-bottom: 0.3rem;
     }
-    .snap-value {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--text);
-    }
-    .snap-sub {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.75rem;
-        margin-top: 0.2rem;
-    }
+    .snap-value { font-family: 'Alfa Slab One', serif; font-size: 1.6rem; color: var(--sand); line-height: 1.1; }
+    .snap-sub { font-size: 0.75rem; margin-top: 0.2rem; font-family: 'Courier Prime', monospace; }
 
-    /* Pick cards */
+    /* ── PICK CARDS ──────────────────────────────────── */
+    section { background: transparent; border: none; padding: 0; margin: 0; }
+    section h2 { display: none; }
     .pick-card {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid var(--border);
+        display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+        padding: 1rem 0; border-bottom: 2px dashed rgba(139,115,85,0.4);
     }
     .pick-card:last-child { border-bottom: none; padding-bottom: 0; }
     .pick-symbol {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: var(--text);
-        min-width: 120px;
+        font-family: 'Alfa Slab One', serif; font-size: 2rem; color: var(--white); letter-spacing: 0.05em; min-width: 120px;
     }
     .pick-meta { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-    .pick-score { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; font-weight: 600; }
-    .pick-vol { color: var(--muted); font-size: 0.85rem; }
+    .pick-score { font-family: 'Courier Prime', monospace; font-size: 0.9rem; font-weight: 700; }
+    .pick-vol { color: var(--barnacle); font-size: 0.85rem; }
 
-    /* Tables */
+    /* ── TABLES ──────────────────────────────────────── */
     table { width: 100%; border-collapse: collapse; }
-    thead tr { border-bottom: 1px solid var(--border2); }
+    thead tr { background: var(--deep); border-bottom: 3px solid var(--barnacle); }
     th {
-        text-align: left;
-        padding: 0.4rem 0.75rem;
-        font-family: 'IBM Plex Mono', monospace;
-        font-weight: 600;
-        color: var(--muted);
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
+        padding: 0.6rem 1rem; text-align: left;
+        font-family: 'Boogaloo', cursive; font-size: 0.8rem; letter-spacing: 0.15em;
+        text-transform: uppercase; color: var(--seafoam);
     }
     td {
-        padding: 0.55rem 0.75rem;
-        border-bottom: 1px solid var(--border);
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.82rem;
+        padding: 0.6rem 1rem; border-bottom: 1px solid rgba(139,115,85,0.25);
+        font-family: 'Courier Prime', monospace; font-size: 0.85rem; color: var(--sand);
     }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #0d1520; }
-    .selected-row td { background: #0a1520; }
-    .selected-row:hover td { background: #0d1a28; }
-    .picked { color: var(--blue); font-weight: 600; }
-    .order-id { font-size: 0.72rem; word-break: break-all; color: var(--muted); }
+    tr:hover td { background: rgba(78,205,196,0.05); }
+    .selected-row td { background: rgba(249,224,75,0.06); }
+    .selected-row:hover td { background: rgba(249,224,75,0.1); }
+    .picked { font-family: 'Boogaloo', cursive; color: var(--seafoam); font-size: 0.85rem; letter-spacing: 0.08em; }
+    .order-id { font-size: 0.72rem; word-break: break-all; color: rgba(245,230,200,0.35); }
 
-    /* Badges */
+    /* ── BADGES ──────────────────────────────────────── */
     .badge {
-        display: inline-block;
-        padding: 0.18em 0.55em;
-        border-radius: 3px;
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 0.72rem;
-        font-weight: 600;
-        white-space: nowrap;
+        display: inline-block; padding: 0.2em 0.65em; border-radius: 2px;
+        font-family: 'Boogaloo', cursive; font-size: 0.85rem; letter-spacing: 0.06em; border: 2px solid;
     }
-    .badge.buy     { background: #051a0e; color: var(--green); border: 1px solid #1a4a28; }
-    .badge.sell    { background: #1a0505; color: var(--red);   border: 1px solid #4a1515; }
-    .badge.neutral { background: #0e1318; color: var(--muted); border: 1px solid var(--border2); }
+    .badge.buy     { background: #062e18; color: var(--neon-teal); border-color: var(--seafoam); }
+    .badge.sell    { background: #3a0a0a; color: #ff8877; border-color: var(--coral); }
+    .badge.neutral { background: rgba(255,255,255,0.05); color: var(--barnacle); border-color: rgba(139,115,85,0.5); }
 
-    /* Utils */
-    .positive { color: var(--green); }
-    .negative { color: var(--red); }
-    .muted    { color: var(--muted); }
-    .empty    { color: var(--muted); padding: 1.25rem 0.75rem; font-style: italic; text-align: center; }
-    p.empty   { color: var(--muted); font-style: italic; }
+    /* ── UTILS ───────────────────────────────────────── */
+    .positive { color: var(--neon-teal); }
+    .negative { color: var(--coral); }
+    .muted    { color: rgba(139,115,85,0.6); }
+    .empty    { color: var(--barnacle); padding: 2rem 0.75rem; font-family: 'Permanent Marker', cursive;
+                text-align: center; opacity: 0.7; }
+    p.empty   { color: var(--barnacle); font-family: 'Permanent Marker', cursive; opacity: 0.7; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    .shack-footer {
+        text-align: center; padding: 2rem;
+        font-family: 'Boogaloo', cursive; font-size: 0.9rem;
+        color: var(--barnacle); letter-spacing: 0.08em;
+        border-top: 3px dashed rgba(139,115,85,0.3);
+    }
 
     @media (max-width: 700px) {
         .snap-grid { grid-template-columns: repeat(2, 1fr); }
-        body { padding: 1rem; }
+        .container { padding: 1rem; }
+        .board-body { padding: 1rem; }
     }
 </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <div class="header-left">
-            <h1>Alpaca Bot</h1>
-            <div class="subtitle">RSI momentum scanner · paper trading</div>
-        </div>
-        <div class="header-right">
-            <div class="env-badge">PAPER</div>
-            <div>Generated Apr 28, 2026  18:22:19</div>
-        </div>
-    </header>
 
+<header class="shack-header">
+    <div class="header-inner">
+        <div>
+            <div class="shack-name">🦞 CAPTAIN ALPACA'S<span class="sub">TRADING SHACK</span></div>
+            <div class="shack-tagline">RSI Momentum Scanner · Paper Trading · Smells Like Alpha</div>
+        </div>
+        <div class="header-meta">
+            <div class="env-badge">⚠ PAPER TRADING ⚠</div>
+            <div class="header-right">Generated Apr 28, 2026  18:53:35</div>
+        </div>
+    </div>
+</header>
+
+<div class="ticker-wrap">
+    <div class="ticker-inner"><span class="">🦞 TODAY'S CATCH</span><span class="green">▲ PORTFOLIO PUMPIN</span><span class="">⚓ HOLD THE LINE</span><span class="red">▼ STOP LOSS OR WALK THE PLANK</span><span class="">🐟 BUY THE DIP LIKE A PELICAN</span><span class="green">▲ RSI LOOKING FRESH</span><span class="">🌊 RIDE THE WAVE</span><span class="">⛵ PAPER GAINS ARE STILL GAINS</span><span class="red">▼ SELL SIGNALS SPOTTED OFF THE BOW</span><span class="">🦈 SHARKS ARE INSTITUTIONS — WE ARE REMORAS</span><span class="">🦞 TODAY'S CATCH</span><span class="green">▲ PORTFOLIO PUMPIN</span><span class="">⚓ HOLD THE LINE</span><span class="red">▼ STOP LOSS OR WALK THE PLANK</span><span class="">🐟 BUY THE DIP LIKE A PELICAN</span><span class="green">▲ RSI LOOKING FRESH</span><span class="">🌊 RIDE THE WAVE</span><span class="">⛵ PAPER GAINS ARE STILL GAINS</span><span class="red">▼ SELL SIGNALS SPOTTED OFF THE BOW</span><span class="">🦈 SHARKS ARE INSTITUTIONS — WE ARE REMORAS</span></div>
+</div>
+
+<div class="container">
     
-    <section class="account-snapshot">
-        <h2>Account Snapshot <span class="live-pill">LIVE</span></h2>
+        <div class="board">
+            <div class="board-title"><span class="icon">⚓</span> ACCOUNT SNAPSHOT<span class="live-pill">● LIVE</span></div>
+            <div class="board-body">
         <div class="snap-grid">
             <div class="snap-card">
                 <div class="snap-label">Portfolio Value</div>
@@ -255,22 +248,28 @@
                 <div class="snap-value positive">+$4,613.76</div>
                 <div class="snap-sub positive">++4.58%</div>
             </div>
+        </div></div>
         </div>
-    </section>
-    <section><h2>Today's Picks</h2><p class="empty">No picks logged yet — run scanner.py after market close.</p></section>
     
-    <section>
-        <h2>Open Positions <span class="live-pill">LIVE</span></h2>
+        <div class="board">
+            <div class="board-title"><span class="icon">🎣</span> TODAY'S CATCH — SCANNER PICKS</div>
+            <div class="board-body"><p class="empty">No picks logged yet — run scanner.py after market close.</p></div>
+        </div>
+    
+        <div class="board">
+            <div class="board-title"><span class="icon">🦀</span> OPEN POSITIONS — IN THE TANK<span class="live-pill">● LIVE</span></div>
+            <div class="board-body">
         <table>
             <thead><tr>
                 <th>Symbol</th><th>Qty</th><th>Market Value</th><th>Cost Basis</th><th>Unrealized P&amp;L</th>
             </tr></thead>
             <tbody><tr><td colspan="5" class="empty">No open positions.</td></tr></tbody>
-        </table>
-    </section>
+        </table></div>
+        </div>
     
-    <section>
-        <h2>Scanner Picks — Last 7 Days</h2>
+        <div class="board">
+            <div class="board-title"><span class="icon">📡</span> SCANNER SIGNALS — LAST 7 DAYS</div>
+            <div class="board-body">
         <table>
             <thead><tr>
                 <th>Date</th><th>Symbol</th><th>RSI</th><th>Score</th><th>Status</th>
@@ -871,11 +870,12 @@
                 <td class="negative">-0.5743</td>
                 <td><span class="muted">—</span></td>
             </tr></tbody>
-        </table>
-    </section>
+        </table></div>
+        </div>
     
-    <section>
-        <h2>Trades — Last 7 Days</h2>
+        <div class="board">
+            <div class="board-title"><span class="icon">🪝</span> ORDER LOG — LAST 7 DAYS</div>
+            <div class="board-body">
         <table>
             <thead><tr>
                 <th>Date</th><th>Symbol</th><th>Side</th><th>Notional</th><th>Order ID</th>
@@ -930,8 +930,13 @@
                 <td>$548.40</td>
                 <td class="muted order-id">e68b9cf4-23f4-48f0-a3f0-c1a1fccbb47f</td>
             </tr></tbody>
-        </table>
-    </section>
+        </table></div>
+        </div>
 </div>
+
+<footer class="shack-footer">
+    🦞 CAPTAIN ALPACA'S TRADING SHACK · ALL TRADES ARE PAPER · NOT FINANCIAL ADVICE · EAT MORE LOBSTER 🦞
+</footer>
+
 </body>
 </html>
