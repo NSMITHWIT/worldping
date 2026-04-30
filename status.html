@@ -174,6 +174,25 @@
     .picked { font-family: 'Boogaloo', cursive; color: var(--seafoam); font-size: 0.85rem; letter-spacing: 0.08em; }
     .order-id { font-size: 0.72rem; word-break: break-all; color: rgba(245,230,200,0.35); }
 
+    /* ── REGIME TAGS ─────────────────────────────────── */
+    .regime-tag {
+        display: inline-block; padding: 0.15em 0.55em; border-radius: 2px;
+        font-family: 'Boogaloo', cursive; font-size: 0.78rem; letter-spacing: 0.1em;
+        border: 1px solid; vertical-align: middle;
+    }
+    .regime-bull    { background: #062e18; color: var(--neon-teal); border-color: var(--seafoam); }
+    .regime-bear    { background: #3a0a0a; color: #ff8877; border-color: var(--coral); }
+    .regime-neutral { background: rgba(255,255,255,0.05); color: var(--barnacle); border-color: rgba(139,115,85,0.5); }
+
+    /* ── NO PICKS STATE ──────────────────────────────── */
+    .no-picks-today {
+        display: flex; flex-direction: column; align-items: center;
+        gap: 0.5rem; padding: 1.5rem 1rem; text-align: center;
+    }
+    .no-picks-icon { font-size: 2rem; }
+    .no-picks-msg  { font-family: 'Alfa Slab One', serif; font-size: 1rem; color: var(--sand); letter-spacing: 0.05em; }
+    .no-picks-detail { font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: var(--barnacle); }
+
     /* ── BADGES ──────────────────────────────────────── */
     .badge {
         display: inline-block; padding: 0.2em 0.65em; border-radius: 2px;
@@ -216,7 +235,7 @@
         </div>
         <div class="header-meta">
             <div class="env-badge">⚠ PAPER TRADING ⚠</div>
-            <div class="header-right">Generated Apr 30, 2026  03:19:42</div>
+            <div class="header-right">Generated Apr 30, 2026  03:33:20</div>
         </div>
     </div>
 </header>
@@ -253,7 +272,16 @@
     
         <div class="board">
             <div class="board-title"><span class="icon">🎣</span> TODAY'S CATCH — SCANNER PICKS</div>
-            <div class="board-body"><p class="empty">No picks logged yet — run scanner.py after market close.</p></div>
+            <div class="board-body">
+        <div class="no-picks-today">
+            <div class="no-picks-icon">🪣</div>
+            <div class="no-picks-msg">No picks today — holding cash or parking in SPY</div>
+            <div class="no-picks-detail">
+                Scanner ran · 6 symbols scanned ·
+                <span class="regime-tag regime-bull">BULL REGIME</span>
+                · nothing cleared threshold
+            </div>
+        </div></div>
         </div>
     
         <div class="board">
@@ -286,554 +314,788 @@
             <div class="board-body">
         <table>
             <thead><tr>
-                <th>Date</th><th>Symbol</th><th>RSI</th><th>Score</th><th>Status</th>
+                <th>Date</th><th>Symbol</th><th>RSI</th><th>Vol</th><th>CLV</th><th>RelStr</th><th>Score</th><th>Regime</th>
             </tr></thead>
             <tbody>
             <tr class="">
                 <td>2026-04-30</td>
                 <td><strong>GEHC</strong></td>
                 <td><span class="badge neutral">RSI 48.0</span></td>
+                <td>1.70x</td>
+                <td>0.81</td>
+                <td class="positive">+0.0138</td>
                 <td class="positive">0.1086</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-30</td>
                 <td><strong>TEVA</strong></td>
                 <td><span class="badge neutral">RSI 57.9</span></td>
+                <td>1.82x</td>
+                <td>0.63</td>
+                <td class="positive">+0.0101</td>
                 <td class="negative">-0.2265</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-30</td>
                 <td><strong>UEC</strong></td>
                 <td><span class="badge neutral">RSI 59.5</span></td>
+                <td>1.54x</td>
+                <td>0.93</td>
+                <td class="positive">+0.0867</td>
                 <td class="negative">-0.2830</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-30</td>
                 <td><strong>NOK</strong></td>
                 <td><span class="badge neutral">RSI 69.0</span></td>
+                <td>1.63x</td>
+                <td>0.12</td>
+                <td class="positive">+0.0186</td>
                 <td class="negative">-0.4311</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-30</td>
                 <td><strong>HAYW</strong></td>
                 <td><span class="badge sell">RSI 74.4</span></td>
+                <td>1.82x</td>
+                <td>0.83</td>
+                <td class="positive">+0.0179</td>
                 <td class="negative">-0.7440</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-30</td>
                 <td><strong>CNC</strong></td>
                 <td><span class="badge sell">RSI 75.4</span></td>
+                <td>1.86x</td>
+                <td>0.75</td>
+                <td class="positive">+0.0300</td>
                 <td class="negative">-0.7597</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-29</td>
                 <td><strong>NVO</strong></td>
                 <td><span class="badge neutral">RSI 59.0</span></td>
+                <td>1.57x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2720</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-29</td>
                 <td><strong>AES</strong></td>
                 <td><span class="badge neutral">RSI 69.7</span></td>
+                <td>1.95x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.5623</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-29</td>
                 <td><strong>QCOM</strong></td>
                 <td><span class="badge sell">RSI 73.0</span></td>
+                <td>3.04x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.8282</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-29</td>
                 <td><strong>OGN</strong></td>
                 <td><span class="badge sell">RSI 74.4</span></td>
+                <td>4.20x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.9195</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-29</td>
                 <td><strong>INTC</strong></td>
                 <td><span class="badge sell">RSI 82.2</span></td>
+                <td>2.55x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.0194</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-29</td>
                 <td><strong>AMD</strong></td>
                 <td><span class="badge sell">RSI 88.1</span></td>
+                <td>2.21x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.2132</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-29</td>
                 <td><strong>MXL</strong></td>
                 <td><span class="badge sell">RSI 97.1</span></td>
+                <td>12.39x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.7005</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>INFY</strong></td>
                 <td><span class="badge neutral">RSI 36.9</span></td>
+                <td>2.26x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.4473</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>BSX</strong></td>
                 <td><span class="badge neutral">RSI 49.7</span></td>
+                <td>1.74x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.0077</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>QXO</strong></td>
                 <td><span class="badge neutral">RSI 51.5</span></td>
+                <td>1.50x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.0458</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>SEDG</strong></td>
                 <td><span class="badge neutral">RSI 58.4</span></td>
+                <td>1.63x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2415</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>IREN</strong></td>
                 <td><span class="badge neutral">RSI 65.7</span></td>
+                <td>1.75x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.4601</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>APLD</strong></td>
                 <td><span class="badge neutral">RSI 67.7</span></td>
+                <td>2.35x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.5659</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>ENTG</strong></td>
                 <td><span class="badge sell">RSI 71.3</span></td>
+                <td>1.54x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.5901</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>CMCSA</strong></td>
                 <td><span class="badge neutral">RSI 70.0</span></td>
+                <td>1.84x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.5937</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>ERAS</strong></td>
                 <td><span class="badge sell">RSI 75.6</span></td>
+                <td>1.60x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.6352</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>ARM</strong></td>
                 <td><span class="badge sell">RSI 82.1</span></td>
+                <td>1.92x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.9491</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-28</td>
                 <td><strong>NVTS</strong></td>
                 <td><span class="badge sell">RSI 86.1</span></td>
+                <td>1.92x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.0005</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag regime-bull">BULL</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-27</td>
                 <td><strong>TMUS ★</strong></td>
                 <td><span class="badge neutral">RSI 33.5</span></td>
+                <td>1.73x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.5219</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-27</td>
                 <td><strong>T ★</strong></td>
                 <td><span class="badge neutral">RSI 38.9</span></td>
+                <td>1.58x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.3401</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>INFY</strong></td>
                 <td><span class="badge neutral">RSI 42.8</span></td>
+                <td>1.53x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.2168</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>QXO</strong></td>
                 <td><span class="badge neutral">RSI 46.2</span></td>
+                <td>2.82x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.1459</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>BSX</strong></td>
                 <td><span class="badge neutral">RSI 47.8</span></td>
+                <td>2.44x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.0816</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>HTHT</strong></td>
                 <td><span class="badge neutral">RSI 47.6</span></td>
+                <td>1.75x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.0763</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>NN</strong></td>
                 <td><span class="badge neutral">RSI 48.8</span></td>
+                <td>7.44x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.0488</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>NOW</strong></td>
                 <td><span class="badge neutral">RSI 52.2</span></td>
+                <td>1.64x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.0690</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>TAL</strong></td>
                 <td><span class="badge neutral">RSI 58.1</span></td>
+                <td>1.90x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2662</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>SMR</strong></td>
                 <td><span class="badge neutral">RSI 61.3</span></td>
+                <td>1.77x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.3593</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>CAR</strong></td>
                 <td><span class="badge neutral">RSI 59.6</span></td>
+                <td>2.85x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.3760</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>ATAT</strong></td>
                 <td><span class="badge neutral">RSI 64.3</span></td>
+                <td>2.01x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.4783</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>OKLO</strong></td>
                 <td><span class="badge neutral">RSI 65.5</span></td>
+                <td>1.70x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.4847</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>IRDM</strong></td>
                 <td><span class="badge neutral">RSI 69.2</span></td>
+                <td>1.84x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.6192</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>NKTR</strong></td>
                 <td><span class="badge neutral">RSI 67.6</span></td>
+                <td>3.62x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.7032</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>ERAS</strong></td>
                 <td><span class="badge sell">RSI 73.3</span></td>
+                <td>2.02x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.7814</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>USAR</strong></td>
                 <td><span class="badge sell">RSI 74.3</span></td>
+                <td>2.13x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.8321</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>XNDU</strong></td>
                 <td><span class="badge sell">RSI 73.9</span></td>
+                <td>2.63x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.8963</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>ARM</strong></td>
                 <td><span class="badge sell">RSI 80.0</span></td>
+                <td>1.61x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.9214</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>VECO</strong></td>
                 <td><span class="badge sell">RSI 86.2</span></td>
+                <td>1.93x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.1891</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>NVTS</strong></td>
                 <td><span class="badge sell">RSI 86.2</span></td>
+                <td>3.48x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.4460</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-27</td>
                 <td><strong>MXL</strong></td>
                 <td><span class="badge sell">RSI 91.4</span></td>
+                <td>2.30x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.4639</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-24</td>
                 <td><strong>QID ★</strong></td>
                 <td><span class="badge neutral">RSI 30.5</span></td>
+                <td>1.69x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.6084</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-24</td>
                 <td><strong>SOXS ★</strong></td>
                 <td><span class="badge neutral">RSI 34.0</span></td>
+                <td>1.52x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.4830</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-24</td>
                 <td><strong>CNQ ★</strong></td>
                 <td><span class="badge neutral">RSI 43.0</span></td>
+                <td>0.66x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.1720</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>NOW</strong></td>
                 <td><span class="badge neutral">RSI 48.4</span></td>
+                <td>1.14x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.0453</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>NVO</strong></td>
                 <td><span class="badge neutral">RSI 50.2</span></td>
+                <td>1.62x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.0077</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>CMCSA</strong></td>
                 <td><span class="badge neutral">RSI 50.9</span></td>
+                <td>1.50x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.0258</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>QCOM</strong></td>
                 <td><span class="badge neutral">RSI 57.4</span></td>
+                <td>1.26x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2096</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>APLD</strong></td>
                 <td><span class="badge neutral">RSI 58.4</span></td>
+                <td>1.16x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2316</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>NOK</strong></td>
                 <td><span class="badge sell">RSI 70.3</span></td>
+                <td>0.84x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.5202</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>INTC</strong></td>
                 <td><span class="badge sell">RSI 71.2</span></td>
+                <td>0.87x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.5472</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>HIMS</strong></td>
                 <td><span class="badge neutral">RSI 69.7</span></td>
+                <td>1.93x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.6468</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>AMD</strong></td>
                 <td><span class="badge sell">RSI 78.7</span></td>
+                <td>1.09x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.7820</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>NVTS</strong></td>
                 <td><span class="badge sell">RSI 80.9</span></td>
+                <td>4.20x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.2360</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-24</td>
                 <td><strong>MXL</strong></td>
                 <td><span class="badge sell">RSI 91.4</span></td>
+                <td>5.95x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-1.6548</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-23</td>
                 <td><strong>QID ★</strong></td>
                 <td><span class="badge buy">RSI 28.8</span></td>
+                <td>1.43x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.6249</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-23</td>
                 <td><strong>BSX ★</strong></td>
                 <td><span class="badge neutral">RSI 33.5</span></td>
+                <td>1.03x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.4433</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class=" selected-row">
                 <td>2026-04-23</td>
                 <td><strong>SOXS ★</strong></td>
                 <td><span class="badge neutral">RSI 34.5</span></td>
+                <td>1.23x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.4365</td>
-                <td><span class="picked">Selected</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>PATH</strong></td>
                 <td><span class="badge neutral">RSI 45.7</span></td>
+                <td>0.57x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.1014</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>NOW</strong></td>
                 <td><span class="badge neutral">RSI 48.0</span></td>
+                <td>0.96x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="positive">0.0515</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>INFY</strong></td>
                 <td><span class="badge neutral">RSI 53.9</span></td>
+                <td>0.71x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.0970</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>RDW</strong></td>
                 <td><span class="badge neutral">RSI 54.5</span></td>
+                <td>1.07x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.1221</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>KWEB</strong></td>
                 <td><span class="badge neutral">RSI 57.8</span></td>
+                <td>0.68x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.1921</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>IGV</strong></td>
                 <td><span class="badge neutral">RSI 60.7</span></td>
+                <td>0.63x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2597</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>SMR</strong></td>
                 <td><span class="badge neutral">RSI 59.9</span></td>
+                <td>1.19x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2760</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>APLD</strong></td>
                 <td><span class="badge neutral">RSI 61.0</span></td>
+                <td>0.98x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.2929</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>HBAN</strong></td>
                 <td><span class="badge neutral">RSI 65.3</span></td>
+                <td>0.66x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.3728</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>IREN</strong></td>
                 <td><span class="badge neutral">RSI 65.1</span></td>
+                <td>1.08x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.4102</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>OKLO</strong></td>
                 <td><span class="badge neutral">RSI 65.5</span></td>
+                <td>1.24x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.4376</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>FCX</strong></td>
                 <td><span class="badge neutral">RSI 69.8</span></td>
+                <td>0.75x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.4940</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>NOK</strong></td>
                 <td><span class="badge sell">RSI 75.1</span></td>
+                <td>1.24x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.7103</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>NVTS</strong></td>
                 <td><span class="badge sell">RSI 74.5</span></td>
+                <td>1.55x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.7441</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr>
             <tr class="">
                 <td>2026-04-23</td>
                 <td><strong>HIMS</strong></td>
                 <td><span class="badge sell">RSI 75.1</span></td>
+                <td>2.41x</td>
+                <td>—</td>
+                <td class="">—</td>
                 <td class="negative">-0.9053</td>
-                <td><span class="muted">—</span></td>
+                <td><span class="regime-tag ">—</span></td>
             </tr></tbody>
         </table></div>
         </div>
